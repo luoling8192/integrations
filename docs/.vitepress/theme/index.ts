@@ -37,6 +37,7 @@ import '@nolebase/vitepress-plugin-page-properties/client/style.css'
 import './styles/vars.css'
 import './styles/main.css'
 
+import Protected from './components/Protected.vue'
 import IntegrationCard from './components/IntegrationCard.vue'
 import HomeContent from './components/HomeContent.vue'
 
@@ -56,6 +57,7 @@ export const Theme: ThemeConfig = {
     })
   },
   enhanceApp({ app }) {
+    app.component('Protected', Protected)
     app.component('IntegrationCard', IntegrationCard)
     app.component('HomeContent', HomeContent)
 

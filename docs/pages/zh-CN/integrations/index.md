@@ -14,6 +14,10 @@ Nólëbase 集成项目提供多种不同的集成、插件、组件和库来方
 
 <br />
 
+<IntegrationCard type="vitepress" title="保密" package="vitepress-plugin-encrypt" />
+
+<br />
+
 <IntegrationCard type="vitepress" title="阅读增强" package="vitepress-plugin-enhanced-readabilities" />
 
 <br />

@@ -3,6 +3,9 @@ import { defineConfig } from 'vitepress'
 import { BiDirectionalLinks } from '@nolebase/markdown-it-bi-directional-links'
 import type { Options as ElementTransformOptions } from '@nolebase/markdown-it-element-transform'
 import { ElementTransform } from '@nolebase/markdown-it-element-transform'
+import { rehype } from 'rehype'
+import RehypeStringgify from 'rehype-stringify'
+import RehypeRewrite from 'rehype-rewrite'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -78,6 +81,7 @@ export default defineConfig({
           {
             text: 'VitePress Plugins',
             items: [
+              { text: 'Encrypt', link: '/pages/en/integrations/vitepress-plugin-encrypt/' },
               { text: 'Enhanced Readabilities', link: '/pages/en/integrations/vitepress-plugin-enhanced-readabilities/' },
               { text: 'Inline Links Previewing', link: '/pages/en/integrations/vitepress-plugin-inline-link-preview/' },
               { text: 'Blinking highlight targeted heading', link: '/pages/en/integrations/vitepress-plugin-highlight-targeted-heading/' },
@@ -129,6 +133,7 @@ export default defineConfig({
           {
             text: 'VitePress 插件',
             items: [
+              { text: '保密', link: '/pages/zh-CN/integrations/vitepress-plugin-encrypt/' },
               { text: '阅读增强', link: '/pages/zh-CN/integrations/vitepress-plugin-enhanced-readabilities/' },
               { text: '行内链接预览', link: '/pages/zh-CN/integrations/vitepress-plugin-inline-link-preview/' },
               { text: '闪烁高亮当前的目标标题', link: '/pages/zh-CN/integrations/vitepress-plugin-highlight-targeted-heading/' },
@@ -139,6 +144,46 @@ export default defineConfig({
         ],
       },
     },
+  },
+  transformHtml: async (code, id) => {
+    if (id.includes('vitepress-plugin-encrypt')) {
+      const rawHTML = ''
+
+      const processed = await rehype()
+        .data('settings', { fragment: true })
+        .use(RehypeRewrite, {
+          rewrite: (node) => {
+            if (node.type === 'element' && node.properties.id === 'vp-nolebase-encrypt-protected-content') {
+              node.children = [
+                {
+                  type: 'element',
+                  tagName: 'div',
+                  properties: {
+                    id: 'vp-nolebase-encrypt-protected-content-placeholder',
+                  },
+                  children: [
+                    {
+                      type: 'text',
+                      value: 'This content is protected. Please input the password to view it.',
+                    },
+                  ],
+                },
+              ]
+            }
+          },
+        })
+        .use(RehypeStringgify)
+        .use(() => {
+          return (tree) => {
+            const scriptNode = {
+
+            }
+          }
+        })
+        .process(code)
+
+      return processed.toString()
+    }
   },
   markdown: {
     config(md) {

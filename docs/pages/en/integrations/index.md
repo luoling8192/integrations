@@ -14,6 +14,10 @@ Nólëbase Integrations project provides a variety of integrations, plugins, com
 
 <br />
 
+<IntegrationCard type="vitepress" title="Encrypt" package="vitepress-plugin-encrypt" />
+
+<br />
+
 <IntegrationCard type="vitepress" title="Enhanced Readabilities" package="vitepress-plugin-enhanced-readabilities" />
 
 <br />

@@ -38,6 +38,8 @@ Nólëbase Integrations project provides a variety of integrations, plugins, com
 
   <IntegrationCard type="markdown-it" title="Elements Transformation" package="markdown-it-element-transform" />
 
+  <IntegrationCard type="vitepress" title="Encrypt" package="vitepress-plugin-encrypt" />
+
   <IntegrationCard type="vitepress" title="Enhanced Readabilities" package="vitepress-plugin-enhanced-readabilities" />
 
   <IntegrationCard type="vitepress" title="Inline Link Previewing" package="vitepress-plugin-inline-link-preview" />
@@ -53,4 +55,3 @@ Nólëbase Integrations project provides a variety of integrations, plugins, com
 </div>
 
 </HomeContent>
-
